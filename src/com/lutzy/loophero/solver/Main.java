@@ -42,11 +42,12 @@ public class Main {
 		boards.add(new Board(6, 2));
 		
 		List<CompletableFuture<Solution>> solutions = new ArrayList<>();
-		ConcurrentHashMap<Board, Integer> memo = new ConcurrentHashMap<>();
+		//ConcurrentHashMap<Board, Integer> memo = new ConcurrentHashMap<>();
 		
 		for(int i=0; i<THREADS; i++) {
 			Solver solver = new Solver();
-			CompletableFuture<Solution> solution = solver.solve(boards.get(i), memo);
+			//CompletableFuture<Solution> solution = solver.solve(boards.get(i), memo);
+			CompletableFuture<Solution> solution = solver.solve(boards.get(i));
 			solutions.add(solution);
 		}
 		
