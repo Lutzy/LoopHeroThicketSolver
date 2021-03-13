@@ -7,12 +7,10 @@ import static com.lutzy.loophero.solver.Board.RIVER;
 import java.util.Arrays;
 import java.util.Stack;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Supplier;
 
 public class Solver {
 
-	//public CompletableFuture<Solution> solve(Board board, ConcurrentHashMap<Board, Integer> memo) {
 	public CompletableFuture<Solution> solve(Board board) {
 		return CompletableFuture.supplyAsync(new Supplier<Solution>() {
 
@@ -29,11 +27,6 @@ public class Solver {
 				while(!boards.isEmpty()) {
 					Board currentBoard = boards.pop();
 					
-//					if(memo.get(currentBoard) == null) {
-//						memo.put(currentBoard, currentBoard.calculateScore());
-//					}
-					
-					//int currentScore = memo.get(currentBoard);
 					int currentScore = currentBoard.calculateScore();
 
 					if(currentScore > highestScoreFound) {
