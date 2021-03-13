@@ -28,7 +28,14 @@ public class Solver {
 
 				while(!boards.isEmpty()) {
 					Board currentBoard = boards.pop();
-					int currentScore = memo.getOrDefault(currentBoard, currentBoard.calculateScore());
+					
+					if(memo.get(currentBoard) == null) {
+						memo.put(currentBoard, currentBoard.calculateScore());
+					} else {
+						continue;
+					}
+					
+					int currentScore = memo.get(currentBoard);
 
 					if(currentScore > highestScoreFound) {
 						bestBoard = new Board(deepCopy(currentBoard.getBoard()));
