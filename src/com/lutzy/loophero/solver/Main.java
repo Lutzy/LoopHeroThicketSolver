@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
 public class Main {
@@ -41,10 +42,11 @@ public class Main {
 		boards.add(new Board(6, 2));
 		
 		List<CompletableFuture<Solution>> solutions = new ArrayList<>();
+		ConcurrentHashMap<Board, Integer> memo = new ConcurrentHashMap<>();
 		
 		for(int i=0; i<THREADS; i++) {
 			Solver solver = new Solver();
-			CompletableFuture<Solution> solution = solver.solve(boards.get(i));
+			CompletableFuture<Solution> solution = solver.solve(boards.get(i), memo);
 			solutions.add(solution);
 		}
 		

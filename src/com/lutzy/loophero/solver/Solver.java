@@ -9,17 +9,18 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Stack;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Supplier;
 
 public class Solver {
 
-	public CompletableFuture<Solution> solve(Board board) {
+	public CompletableFuture<Solution> solve(Board board, ConcurrentHashMap<Board, Integer> memo) {
 		return CompletableFuture.supplyAsync(new Supplier<Solution>() {
 
 			@Override
 			public Solution get() {
 				Stack<Board> boards = new Stack<>();
-				Map<Board, Integer> memo = new HashMap<>();
+				
 				int highestScoreFound = -1;
 				Board bestBoard = new Board();
 
